@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `pokemon`
 --
+CREATE DATABASE restapitest123;
 
 CREATE TABLE `pokemon` (
   `id` int(11) NOT NULL,
@@ -67,9 +68,8 @@ INSERT INTO `pokemon` (`id`, `name`, `location`, `type`, `description`, `image`,
 (22, 'Solfructo', 'Alicante', 'Planta', 'Solfructo es un Pokémon que simboliza la energía del sol...', 'static/images/solfructo.png', '2024-02-14 23:33:42', '2024-02-14 23:33:42'),
 (23, 'Alcarapix', 'Guadalajara', 'Bicho', 'Alcarapix, el Pokémon Abeja Mielera, es conocido por su incansable trabajo...', 'static/images/alcarapix.png', '2024-02-14 23:33:42', '2024-02-14 23:33:42');
 
---
--- Índices para tablas volcadas
---
+
+
 
 --
 -- Indices de la tabla `pokemon`
@@ -92,3 +92,16 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
+-- DELIMITADORES
+--
+
+DELIMITER $$
+CREATE PROCEDURE `sp_search_pokemon_by_id`(in pokeId int)
+BEGIN
+    SELECT id, name, location, type, description,image, created_at
+    FROM pokemon
+    where id = pokeId;
+END $$
+

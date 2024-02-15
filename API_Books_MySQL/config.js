@@ -15,7 +15,7 @@ const config = {
     connectTimeout: 60000,
     multipleStatements: true,
   },
-  listPerPage: 10,
+  listPerPage: 8, //Establece el número de resultados por página
 };
 
 export default config;
