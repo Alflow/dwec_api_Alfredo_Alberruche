@@ -2,6 +2,9 @@ import db from "../services/db.js";
 import helper from "../helper.js";
 import config from "../config.js";
 
+//Permite pasar como parámetro en la url el número de página
+//http://localhost:3000/books/?page=2
+
 async function getMultiple(page = 1) {
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
