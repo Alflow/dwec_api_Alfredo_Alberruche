@@ -32,7 +32,7 @@ async function create(req) {
 
     const result = await db.query(
       `INSERT INTO pokemon
-      (id, name, location, type, description, img)
+      (id, name, location, type, description, image)
       VALUES
       ('${body.id}', '${body.name}','${body.location}','${body.type}','${body.description}','${url}')`
     );
