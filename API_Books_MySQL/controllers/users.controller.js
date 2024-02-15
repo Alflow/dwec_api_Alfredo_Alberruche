@@ -70,6 +70,7 @@ const loginUser = async (req, res) => {
       name: user.name,
       email: user.email,
     },
+    // TIEMPO DE EXPIRACIÓN DEL TOKEN QUE DEVOLVERÁ AL USER AL LOGAR CORRECTAMENTE 
     process.env.TOKEN_SECRET || "cursoDAW2",
     { expiresIn: "20000" }
   );
