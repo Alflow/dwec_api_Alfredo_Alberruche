@@ -11,12 +11,17 @@ async function getMultiple(page = 1) {
     `SELECT id, name,location, type, description,  image 
     FROM pokemon LIMIT ${offset},${config.listPerPage}`
   );
+  const total = await db.query(`SELECT COUNT(*) FROM pokemon`);
+
   const data = helper.emptyOrRows(rows);
   const meta = { page };
+
+  console.log(`Total de elementos para mostrar: ${total}`);
 
   return {
     data,
     meta,
+    total,
   };
 }
 

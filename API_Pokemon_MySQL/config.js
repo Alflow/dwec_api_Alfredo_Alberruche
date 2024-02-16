@@ -15,7 +15,9 @@ const config = {
     connectTimeout: 60000,
     multipleStatements: true,
   },
-  listPerPage: 30, //Establece el número de resultados por página
+  // Ponemos unos 8 pokemons por página, para controlar la paginación.
+
+  listPerPage: 8, //Establece el número de resultados por página
 };
 
 export default config;
