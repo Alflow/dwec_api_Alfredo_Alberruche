@@ -8,7 +8,7 @@ const upload = multer({ storage });
 
 const router = Router();
 
-/* GET books. */
+/* GET POKEMONS. */
 router.get("/", async function (req, res, next) {
   try {
     res.json(await pokemon.getMultiple(req.query.page));

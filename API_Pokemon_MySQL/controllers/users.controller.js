@@ -4,6 +4,12 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+// NUEVO 
+
+const app = express();
+
+
+
 import db from "../services/db.js";
 import helper from "../helper.js";
 import config from "../config.js";

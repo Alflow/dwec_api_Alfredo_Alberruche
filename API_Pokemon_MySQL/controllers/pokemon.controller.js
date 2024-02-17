@@ -11,6 +11,7 @@ async function getMultiple(page = 1) {
     `SELECT id, name,location, type, description,  image 
     FROM pokemon LIMIT ${offset},${config.listPerPage}`
   );
+  
   const total = await db.query(`SELECT COUNT(*) FROM pokemon`);
 
   // Pasamos a números concretos los totales
@@ -37,7 +38,8 @@ async function getMultiple(page = 1) {
 async function create(req) {
   const { body, file } = req;
   // console.log(body, file);
-
+  //El back lo convierte en un JSON
+  // console.log(body instanceof FormData); 
   let message = "Error in creating book";
 
   if (file) {
