@@ -13,15 +13,24 @@ async function getMultiple(page = 1) {
   );
   const total = await db.query(`SELECT COUNT(*) FROM pokemon`);
 
+  // Pasamos a números concretos los totales
+  const totalItems = total[0]["COUNT(*)"];
+  const totalPages = Math.ceil(totalItems / config.listPerPage);
+
   const data = helper.emptyOrRows(rows);
   const meta = { page };
 
   console.log(`Total de elementos para mostrar: ${total}`);
 
+  // Modificamos para devolver los conteos
   return {
     data,
-    meta,
-    total,
+    meta: {
+      page,
+      totalPages,
+      totalItems,
+      itemsPerPage: config.listPerPage,
+    },
   };
 }
 
@@ -37,9 +46,9 @@ async function create(req) {
 
     const result = await db.query(
       `INSERT INTO pokemon
-      (id, name, location, type, description, image)
+      (name, location, type, description, image)
       VALUES
-      ('${body.id}', '${body.name}','${body.location}','${body.type}','${body.description}','${url}')`
+      ('${body.name}','${body.location}','${body.type}','${body.description}','${url}')`
     );
 
     if (result.affectedRows) {
