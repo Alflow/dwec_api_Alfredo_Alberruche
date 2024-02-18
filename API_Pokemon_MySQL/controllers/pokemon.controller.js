@@ -54,6 +54,7 @@ async function create(req) {
     );
 
     if (result.affectedRows) {
+      console.log(result);
       message = "pokemon created successfully";
     }
   }
