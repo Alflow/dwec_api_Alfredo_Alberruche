@@ -73,7 +73,7 @@ async function update(id, req) {
     // console.log(url);
     const result = await db.query(
       `UPDATE pokemon 
-    SET name="${body.name}",location="${body.location}",type="${body.type}",description="${body.description}", img="${url}"
+    SET id=${id}, name="${body.name}",location="${body.location}",type="${body.type}",description="${body.description}", image="${url}"
     WHERE id=${id}`
     );
 

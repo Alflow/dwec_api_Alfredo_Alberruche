@@ -45,17 +45,18 @@ router.post("/", upload.single("img"), async function (req, res, next) {
 /* PUT book */
 router.put("/:id", upload.single("img"), async function (req, res, next) {
   try {
-    // console.log("PUT Route", req.body);
+    console.log("PUT Route", req.body);
     res.json(await pokemon.update(req.params.id, req));
-    res.json({ msg: "aqui update" });
+    // res.json({ msg: "aqui update" }); ESTO SOBRABA. NO HAY QUE ENVIAR DOS RES.JSON
   } catch (err) {
     console.error(`Error while updating pokemon`, err.message);
     next(err);
   }
 });
 
-/* DELETE book */
-router.delete("/:id", verifyToken, async function (req, res, next) {
+/* DELETE POKEMON */
+// router.delete("/:id", verifyToken, async function (req, res, next) {
+router.delete("/:id", async function (req, res, next) {
   try {
     res.json(await pokemon.remove(req.params.id));
   } catch (err) {
