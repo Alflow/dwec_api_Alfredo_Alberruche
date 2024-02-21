@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS restapitest123;
-CREATE DATABASE IF NOT EXISTS restapitest123;
-USE restapitest123;
+DROP DATABASE IF EXISTS api_bd_alfredo_alberruche123;
+CREATE DATABASE IF NOT EXISTS api_bd_alfredo_alberruche123;
+USE api_bd_alfredo_alberruche123;
 
 CREATE TABLE `language`
 (

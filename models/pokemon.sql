@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `restapitest123`
+-- Base de datos: `api_bd_alfredo_alberruche123`
 --
 
 -- --------------------------------------------------------
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `pokemon`
 --
-CREATE DATABASE restapitest123;
+CREATE DATABASE api_bd_alfredo_alberruche123;
 
 CREATE TABLE `pokemon` (
   `id` int(11) NOT NULL,
