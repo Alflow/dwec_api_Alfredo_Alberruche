@@ -1,32 +1,81 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-02-2024 a las 00:34:50
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+DROP DATABASE IF EXISTS api_bd_alfredo_alberruche
+CREATE DATABASE IF NOT EXISTS api_bd_alfredo_alberruche;
+USE api_bd_alfredo_alberruche;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+CREATE TABLE `language`
+(
+  `id`            INT(11) NOT NULL auto_increment ,
+  `name`          VARCHAR(255) NOT NULL ,
+  `released_year` INT NOT NULL ,
+  `githut_rank`   INT NULL ,
+  `pypl_rank`     INT NULL ,
+  `tiobe_rank`    INT NULL ,
+  `created_at`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  `updated_at`    DATETIME on UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  PRIMARY KEY (`id`),
+  UNIQUE `idx_name_unique` (`name`(255))
+)
+engine = innodb charset=utf8mb4 COLLATE utf8mb4_general_ci;
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+INSERT INTO language(id,name,released_year,githut_rank,pypl_rank,tiobe_rank) 
+VALUES 
+(1,'JavaScript',1995,1,3,7),
+(2,'Python',1991,2,1,3),
+(3,'Java',1995,3,2,2),
+(4,'TypeScript',2012,7,10,42),
+(5,'C#',2000,9,4,5),
+(6,'PHP',1995,8,6,8),
+(7,'C++',1985,5,5,4),
+(8,'C',1972,10,5,1),
+(9,'Ruby',1995,6,15,15),
+(10,'R',1993,33,7,9),
+(11,'Objective-C',1984,18,8,18),
+(12,'Swift',2015,16,9,13),
+(13,'Kotlin',2011,15,12,40),
+(14,'Go',2009,4,13,14),
+(15,'Rust',2010,14,16,26),
+(16,'Scala',2004,11,17,34);
 
---
--- Base de datos: `api_bd_alfredo_alberruche`
---
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `pokemon`
---
-CREATE DATABASE api_bd_alfredo_alberruche;
+-- Crea la tabla de usuarios
+CREATE TABLE `user`
+(
+  `email`         VARCHAR(255) NOT NULL ,
+  `name`          VARCHAR(255) NOT NULL ,
+  `password`      VARCHAR(255) NOT NULL ,
+  `created_at`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  `updated_at`    DATETIME on UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  PRIMARY KEY (`email`)
+);
+
+
+
+-- Crea la tabla de libros
+
+CREATE TABLE `book`
+(
+  `id`            INT(11) NOT NULL auto_increment ,
+  `title`         VARCHAR(255) NOT NULL ,
+  `img`           VARCHAR(255) NULL ,
+  `created_at`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  `updated_at`    DATETIME on UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  PRIMARY KEY (`id`),
+  UNIQUE `idx_name_unique` (`title`(255))
+)
+engine = innodb charset=utf8mb4 COLLATE utf8mb4_general_ci;
+
+-- Inserta algunos libros de prueba
+
+INSERT INTO book(id,title,img) VALUES 
+(1,'Libro 1',"https://loremflickr.com/320/240"),
+(2,'Libro 2',"https://loremflickr.com/320/240"),
+(3,'Libro 3',"./app/assets/Javascript_Logo.png"),
+(4,'Libro 4',"./app/assets/Javascript_Logo.png");
+
+
+
 
 CREATE TABLE `pokemon` (
   `id` int(11) NOT NULL,
@@ -37,11 +86,8 @@ CREATE TABLE `pokemon` (
   `image` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `pokemon`
---
+)engine = innodb charset=utf8mb4 COLLATE utf8mb4_general_ci
+;
 
 INSERT INTO `pokemon` (`id`, `name`, `location`, `type`, `description`, `image`, `created_at`, `updated_at`) VALUES
 (1, 'Aquixal', 'A Coruña', 'Agua', 'Aquixal es un Pokémon tipo Agua que habita en las costas rocosas de la región...', 'static/images/aquixal.png', '2024-02-14 23:31:43', '2024-02-14 23:31:43'),
@@ -70,99 +116,26 @@ INSERT INTO `pokemon` (`id`, `name`, `location`, `type`, `description`, `image`,
 
 
 
-
---
--- Indices de la tabla `pokemon`
---
-ALTER TABLE `pokemon`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `idx_name_unique` (`id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `pokemon`
---
-ALTER TABLE `pokemon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
-
-
-
-
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `user`
---
-
-CREATE TABLE `user` (
-  `email` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`email`, `name`, `password`, `created_at`, `updated_at`) VALUES
-('a@a.com', 'test', '$2b$10$tvzQEquj.XAFaL.sR4kmduyD/bSig.wNf4NAN7okX21KQ6JYq.SSa', '2024-02-15 17:27:40', '2024-02-15 17:27:40'),
-('ALFONSITO@FONSITOALFON.COM', 'ALFONDO', '$2b$10$f3e2PkCQkB6iNm5CcljuoOB365sfngAO4TbPLsFZ4bm2vQaTZUthe', '2024-02-18 19:44:35', '2024-02-18 19:44:35'),
-('alfredotest@gmail.com', 'Alfredo test', '$2b$10$7TXDsEaMLGedkyEtGNgbWupMPvb861iuruBvaDSTjur0v/ViMCdSa', '2024-02-15 17:45:43', '2024-02-15 17:45:43'),
-('ASDADASD@DFSDF.COM', 'DASFCASDF', '$2b$10$/PeWdFv9TBD64bUuOcawM.uD7I8Z2u0m6u24oEvxt5rtw/t3piaae', '2024-02-18 17:57:19', '2024-02-18 17:57:19'),
-('cihix47812@kxgif.com', 'SDDSDDD', '$2b$10$mvzYY24mtrTt7OnIXZEVQeP5YzkmdkF/Juk0QykKlU95loKtkw4OS', '2024-02-18 17:18:42', '2024-02-18 17:18:42'),
-('cihix4DSADA7812@kxgif.com', 'ASASASASS', '$2b$10$QgcFEM0GShsQYn1bsHQLnulhbwWtfcC.DuPH4.rXzIuelaKh53JAK', '2024-02-18 17:19:13', '2024-02-18 17:19:13'),
-('dsfsdf', 'fdsfsf', '$2b$10$Pkmpn0pnFOq.yOu61IxqVuP..1B8uOMmkajJpNDhEacJ04MtfwIIS', '2024-02-17 19:51:10', '2024-02-17 19:51:10'),
-('incognito@a.com', 'INCOGNITO', '$2b$10$jzdVO98OtvWDsGhPks7rq.xGnp9pGojhlozBbSjNxgi2aOC/BfwYK', '2024-02-15 18:16:30', '2024-02-15 18:16:30'),
-('inSASl@gmail.com', 'ASASAAS', '$2b$10$XuwEsRLg/SiHOP6irTiGje6P3u1Uirpo3u0vDVFCes4uO4uTElCzG', '2024-02-18 17:56:35', '2024-02-18 17:56:35'),
-('jaADSDADfete7875@anawalls.com', 'ASDASDASD', '$2b$10$WXEYEHAK8BLl4VsEbWKk/u7cdfL56avByThgrfW/ClWDZA9JBYi0.', '2024-02-18 17:56:55', '2024-02-18 17:56:55'),
-('jafete7SSS875@anawalls.com', 'SSSS', '$2b$10$2DPFnSXvISNYbKoM60swDOKNGJqVIF3O/r7JlKohwM1nncAieACUe', '2024-02-18 17:55:41', '2024-02-18 17:55:41'),
-('NUEsVOssssssssNUEVO', 'ALBERsTaaaaaaaaaO NUEVO NUEVO', '$2b$10$H2TaWBREUZeXkNd1RfN.zOcaxIwtW5q2KEzPX8OYj9FLOmsKBCOIK', '2024-02-17 19:36:33', '2024-02-17 19:36:33'),
-('NUEVONUEVO', 'ALBERTO NUEVO NUEVO', '$2b$10$lTe0x.8W92tcqC29ccTZzufqYK5MlYWUhRpSFwDyg1.0DGqsCKoM6', '2024-02-17 19:31:16', '2024-02-17 19:31:16'),
-('NUEVOssssssssNUEVO', 'ALBERTaaaaaaaaaO NUEVO NUEVO', '$2b$10$dBwow3H3jm1fGNOhEN7Qf.z5KSyKFMHSpuOJquqnEMgpguuyfR.Lu', '2024-02-17 19:35:28', '2024-02-17 19:35:28'),
-('ooooo', 'oooo NUoooEVO NUEVO', '$2b$10$k9MMXhqKrCvj2s92K0r1auifVgDE9BYfV/BH17uofCbJrYfByUJuy', '2024-02-17 19:45:09', '2024-02-17 19:45:09'),
-('pmorop@gmail.edu', 'pmorop', '$2b$10$6KTMXf.aPj/bK/6CtBYd.uHf2bTIfIEfuzFQETkAIe/eA5.OGgzLq', '2024-02-21 11:56:10', '2024-02-21 11:56:10'),
-('sddasd', 'sadasd', '$2b$10$saW0SMZ3UOQOJ2AqjlTpSONX92IIp3kIXO5nc0lZ4RrDZ6qntzXzu', '2024-02-17 19:53:12', '2024-02-17 19:53:12'),
-('xolemib348@visignal.com', 'ASDADSADAD', '$2b$10$WL8.Q/TNwD7KCThmm1n8Uu4dZGHBOypnoBwo9MFRnN1bgtkBtie/q', '2024-02-18 17:17:08', '2024-02-18 17:17:08'),
-('xolemib348asdad@visignal.com', 'dasdadas', '$2b$10$nj7rLVgZjPXEx/h39c8Y8uiUFcKKbGGxuTTr2slt5cAWacJY7L5K.', '2024-02-18 17:23:19', '2024-02-18 17:23:19');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`email`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
---
--- DELIMITADORES
---
-
 DELIMITER $$
-CREATE PROCEDURE `sp_search_pokemon_by_id`(in pokeId int)
+
+CREATE PROCEDURE `sp_search_language_by_id`(in langid int)
 BEGIN
-    SELECT id, name, location, type, description,image, created_at
-    FROM pokemon
-    where id = pokeId;
+    SELECT name, githut_rank, pypl_rank, tiobe_rank, created_at
+    FROM language
+    where id = langid;
 END $$
 
+DELIMITER $$
+CREATE PROCEDURE `sp_search_book_by_id`(in bookid int)
+BEGIN
+    SELECT id, title, img, created_at
+    FROM book
+    where id = bookid;
+END $$
+DELIMITER $$
+CREATE PROCEDURE `sp_search_pokemon_by_id`(in pokemonId int)
+BEGIN
+    SELECT id, name, location, type, description, image, created_at, updated_at
+    FROM pokemon
+    where id = pokemonId;
+END $$
