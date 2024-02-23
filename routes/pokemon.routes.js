@@ -30,14 +30,14 @@ router.get("/auth", verifyToken, async function (req, res, next) {
 
 /* POST book */
 
-// router.post("/", verifyToken, upload.single("img"),async function (req, res, next) {
+router.post("/", verifyToken, upload.single("img"),async function (req, res, next) {
 
-router.post("/", upload.single("img"), async function (req, res, next) {
   try {
-    // console.log("POST Route", req.body);
+    
     res.json(await pokemon.create(req));
   } catch (err) {
     console.error(`Error while creating pokemon`, err.message);
+    alert(err.message);
     next(err);
   }
 });
