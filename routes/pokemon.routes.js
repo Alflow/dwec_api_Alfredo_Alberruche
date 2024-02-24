@@ -37,7 +37,7 @@ router.post("/", verifyToken, upload.single("img"),async function (req, res, nex
     res.json(await pokemon.create(req));
   } catch (err) {
     console.error(`Error while creating pokemon`, err.message);
-    alert(err.message);
+    alert("error!" + err.message);
     next(err);
   }
 });
