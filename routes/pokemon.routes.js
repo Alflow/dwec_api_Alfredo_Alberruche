@@ -18,7 +18,7 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/* GET Auth books. */
+/* GET Auth pokemon. */
 router.get("/auth", verifyToken, async function (req, res, next) {
   try {
     res.json(await pokemon.getMultiple(req.query.page));
@@ -28,7 +28,7 @@ router.get("/auth", verifyToken, async function (req, res, next) {
   }
 });
 
-/* POST book */
+/* POST pokemon */
 
 router.post("/", verifyToken, upload.single("img"),async function (req, res, next) {
 
@@ -42,7 +42,7 @@ router.post("/", verifyToken, upload.single("img"),async function (req, res, nex
   }
 });
 
-/* PUT book */
+/* PUT pokemon */
 router.put("/:id", upload.single("img"), async function (req, res, next) {
   try {
     console.log("PUT Route", req.body);
@@ -55,8 +55,8 @@ router.put("/:id", upload.single("img"), async function (req, res, next) {
 });
 
 /* DELETE POKEMON */
-// router.delete("/:id", verifyToken, async function (req, res, next) {
-router.delete("/:id", async function (req, res, next) {
+router.delete("/:id", verifyToken, async function (req, res, next) {
+// router.delete("/:id", async function (req, res, next) {
   try {
     res.json(await pokemon.remove(req.params.id));
   } catch (err) {
