@@ -11,13 +11,10 @@ async function getMultiple(page = 1) {
     `SELECT id, name,location, type, description,  image 
     FROM pokemon LIMIT ${offset},${config.listPerPage}`
   );
-  
   const total = await db.query(`SELECT COUNT(*) FROM pokemon`);
-
   // Pasamos a números concretos los totales
   const totalItems = total[0]["COUNT(*)"];
   const totalPages = Math.ceil(totalItems / config.listPerPage);
-
   const data = helper.emptyOrRows(rows);
   const meta = { page };
 
@@ -39,7 +36,7 @@ async function create(req) {
   const { body, file } = req;
   // console.log(body, file);
   //El back lo convierte en un JSON
-  // console.log(body instanceof FormData); 
+  // console.log(body instanceof FormData);
   let message = "Error in creating book";
 
   if (file) {
@@ -58,7 +55,6 @@ async function create(req) {
       message = "pokemon created successfully";
     }
   }
-
   return { message };
 }
 
@@ -84,7 +80,6 @@ async function update(id, req) {
   }
   return { message };
 }
-
 async function remove(id) {
   const result = await db.query(`DELETE FROM pokemon WHERE id=${id}`);
 
@@ -96,7 +91,6 @@ async function remove(id) {
 
   return { message };
 }
-
 async function search(id) {
   const rows = await db.callSpSearch(id, "pokemon");
   const data = helper.emptyOrRows(rows);
