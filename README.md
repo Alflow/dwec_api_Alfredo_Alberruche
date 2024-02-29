@@ -9,9 +9,12 @@ La API permite a los usuarios registrarse, iniciar sesión y gestionar sus propi
 
 ## Características
 
-- **Registro y Autenticación de Usuarios:** Para interactuar con la API y gestionar las criaturas, los usuarios deben registrarse y autenticarse. Utilizamos JWT (JSON Web Tokens) para asegurar la autenticación y proteger las rutas.
-- **Gestión de Criaturas:** Los usuarios pueden crear, editar y eliminar sus criaturas inspiradas en las provincias españolas.
-- **Base de Datos MySQL:** El proyecto utiliza MySQL como sistema de gestión de base de datos. Las tablas principales son `users` para la gestión de usuarios y `pokemon` para la gestión de las criaturas.
+### Registro y Autenticación de Usuarios:
+Para interactuar con la API y gestionar las criaturas, los usuarios deben registrarse y autenticarse. Utilizamos JWT (JSON Web Tokens) para asegurar la autenticación y proteger las rutas.
+### Gestión de Criaturas:
+Los usuarios pueden crear, editar y eliminar sus criaturas inspiradas en las provincias españolas.
+### Base de Datos MySQL:
+El proyecto utiliza MySQL como sistema de gestión de base de datos. Las tablas principales son `users` para la gestión de usuarios y `pokemon` para la gestión de las criaturas.
 
 ## Instalación y Configuración
 
@@ -23,7 +26,6 @@ Asegúrate de tener MySQL instalado y configurado en tu entorno local. Además, 
 
 ## Paso 1: Clonar el Repositorio
 
-```bash
 git clone https://github.com/<tu-usuario>/tu-proyecto-api-rest.git
 cd tu-proyecto-api-rest
 
