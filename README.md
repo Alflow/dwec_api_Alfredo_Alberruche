@@ -21,26 +21,26 @@ Asegúrate de tener MySQL instalado y configurado en tu entorno local. Además, 
 
 ## Instalación
 
-### Paso 1: Clonar el Repositorio
+## Paso 1: Clonar el Repositorio
 
 ```bash
 git clone https://github.com/<tu-usuario>/tu-proyecto-api-rest.git
 cd tu-proyecto-api-rest
 
-### Paso 2: Base de Datos
+## Paso 2: Base de Datos
 
 Para importar la base de datos MySQL proporcionada con el proyecto, ejecuta el siguiente comando en tu terminal. Asegúrate de reemplazar `usuario`, `nombre_de_tu_base_de_datos`, y `ruta/a/tu/archivo.sql` con tus datos específicos
 
-### Paso 3: Instalar Dependencias
+## Paso 3: Instalar Dependencias
 
 Para instalar todas las dependencias necesarias del proyecto, ejecuta el npm install en tu terminal dentro del directorio del proyecto.
 Este comando leerá el archivo `package.json` y descargará todas las dependencias listadas en él.
 
-### Paso 4: Configurar Variables de Entorno
+## Paso 4: Configurar Variables de Entorno
 
 Necesitas configurar las variables de entorno para tu proyecto. Comienza por copiar el archivo de ejemplo `.env.example` a un nuevo archivo llamado `.env`:
 
-### Paso 5: Iniciar el Servidor con Nodemon
+## Paso 5: Iniciar el Servidor con Nodemon
 
 Para facilitar el desarrollo y permitir que el servidor se reinicie automáticamente cada vez que hagas cambios en el código, vamos a utilizar Nodemon. Si aún no tienes Nodemon instalado globalmente en tu sistema, puedes instalarlo con el siguiente comando: npm install -g nodemon
 
